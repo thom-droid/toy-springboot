@@ -3,6 +3,7 @@ package org.cannedcoffee.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.cannedcoffee.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 //class linked to the table
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     //indicates PK field
     @Id
