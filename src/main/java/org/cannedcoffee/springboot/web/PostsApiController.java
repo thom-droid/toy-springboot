@@ -30,4 +30,12 @@ public class PostsApiController {
         return postsService.findById(id);
     }
 
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long deleteById(@PathVariable Long id){
+        postsService.delete(id);
+
+        // to send json back to client when ajax request was successful
+        return id;
+    }
+
 }

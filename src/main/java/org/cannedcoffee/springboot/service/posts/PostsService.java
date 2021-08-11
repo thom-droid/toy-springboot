@@ -53,4 +53,17 @@ public class PostsService {
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void delete(Long id){
+
+        //check first if this data in entity exists.
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id = "+ id));
+
+        //then do DELETE
+        postsRepository.deleteById(id);
+    }
+
+
 }
