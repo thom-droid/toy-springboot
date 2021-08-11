@@ -2,6 +2,7 @@ package org.cannedcoffee.springboot.web;
 
 import org.cannedcoffee.springboot.domain.posts.Posts;
 import org.cannedcoffee.springboot.domain.posts.PostsRepository;
+import org.cannedcoffee.springboot.web.dto.PostsResponseDto;
 import org.cannedcoffee.springboot.web.dto.PostsSaveRequestDto;
 import org.cannedcoffee.springboot.web.dto.PostsUpdateRequestDto;
 import org.junit.After;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -105,4 +107,59 @@ public class PostsApiControllerTest {
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
     }
 
+    @Test
+    public void test_findById() {
+
+        //given
+
+        //save a post first
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build()
+        );
+
+        Long id = savedPosts.getId();
+
+        String url = "http://localhost:"+ port +"/api/v1/posts/"+id;
+
+        //when
+        PostsResponseDto responseDto = restTemplate.getForObject(url, PostsResponseDto.class, Long.class);
+
+        //then
+        // compare responseDto to request
+        assertThat(responseDto.getTitle()).isEqualTo(savedPosts.getTitle());
+        assertThat(responseDto.getContent()).isEqualTo(savedPosts.getContent());
+        assertThat(responseDto.getAuthor()).isEqualTo(savedPosts.getAuthor());
+
+
+    }
+
+    @Test
+    public void deleteById() {
+
+        //given
+        //save a post first
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build()
+        );
+
+        Long id = savedPosts.getId();
+
+        String url = "http://localhost:"+ port +"/api/v1/posts/"+id;
+
+
+        //when
+        restTemplate.delete(url, id);
+
+        //then
+        Optional optional = postsRepository.findById(id);
+        assertThat(optional).isEmpty();
+
+
+    }
 }
