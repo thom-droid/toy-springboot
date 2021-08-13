@@ -2,18 +2,16 @@ package org.cannedcoffee.springboot.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.cannedcoffee.springboot.config.auth.LoginUser;
 import org.cannedcoffee.springboot.config.auth.dto.SessionUser;
-import org.cannedcoffee.springboot.domain.posts.PostsRepository;
 import org.cannedcoffee.springboot.service.posts.PostsService;
 import org.cannedcoffee.springboot.web.dto.PostsResponseDto;
-import org.cannedcoffee.springboot.web.dto.PostsUpdateRequestDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,13 +25,10 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
 
         //show all posts
         model.addAttribute("posts", postsService.findAllDesc());
-
-        //
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user !=null){
             model.addAttribute("loginUserName", user.getName());
