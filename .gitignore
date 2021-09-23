@@ -4,3 +4,5 @@
 build
 out
 application-oauth.properties
+.properties
+gradlew
