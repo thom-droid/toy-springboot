@@ -8,7 +8,7 @@ import org.cannedcoffee.springboot.web.dto.PostsUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 //this annotation will create constructor and initialize the object
-//with final field. So basically will do the same as @Autowired, that is deprecated
+//with final field. So basically will do the same as @Autowired, that is less recommended
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
@@ -16,8 +16,8 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto){
-        return postsService.save(requestDto);
+        public Long save(@RequestBody PostsSaveRequestDto requestDto){
+            return postsService.save(requestDto);
     }
 
     @PutMapping("/api/v1/posts/{id}")

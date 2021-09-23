@@ -1,4 +1,4 @@
-package org.cannedcoffee.springboot.config.auth;
+package org.cannedcoffee.springboot.config;
 
 import lombok.RequiredArgsConstructor;
 import org.cannedcoffee.springboot.config.auth.dto.LoginUserArgumentResolver;
