@@ -20,8 +20,8 @@ before_deploy:
 
 deploy:
   - provider: s3
-    access_key_id: AKIAYX4B4LOUBQEBHEEP
-    secret_access_key: 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
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     bucket: springboot-cannedcoffee-build
     region: ap-northeast-2
     skip_cleanup: true
