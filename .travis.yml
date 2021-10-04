@@ -13,6 +13,23 @@ cache:
     - '$HOME/.gradle'
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r springboot-cannedcoffee *
+  - mkdir -p deploy
+  - mv springboot-cannedcoffee.zip deploy/springboot-cannedcoffee.zip
+
+deploy:
+  - provider: s3
+    access_key_id: AKIAYX4B4LOUBQEBHEEP
+    secret_access_key: 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
+    bucket: springboot-cannedcoffee-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait_until_deployed: true
+
+
 before_install:
   - chmod +x gradlew
 
