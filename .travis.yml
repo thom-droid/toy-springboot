@@ -14,9 +14,13 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r springboot-cannedcoffee *
-  - mkdir -p deploy
-  - mv springboot-cannedcoffee.zip deploy/springboot-cannedcoffee.zip
+  - mkdir -p before-deploy # directory for deployment files. for deployment Jar, appspec(codedeploy), script files are needed
+  - cp scripts/*.sh before-deploy/ # script file
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cd before-deploy && zip -r before-deploy * # compress all the files in the dir as a zip.
+  - cd ../ && mkdir -p deploy # create dir
+  - mv before-deploy/before-deploy.zip deploy/toy-springboot.zip
 
 deploy:
   - provider: s3
