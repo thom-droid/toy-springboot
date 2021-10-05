@@ -36,6 +36,7 @@ deploy:
     application: springboot-cannedcoffee-codedeploy
     deployment_group: springboot-cannedcoffee-group
     region: us-east-2
+    key: deploy/springboot-cannedcoffee.zip
     wait_until_deployed: true
 
 
