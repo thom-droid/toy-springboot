@@ -13,9 +13,9 @@ permissions:
 
 hooks:
   BeforeInstall:
-    - location: scripts/deploy-before.sh
+    - location: deploy-before.sh
       runas: ec2-user
   ApplicationStart:
-    - location: scripts/deploy.sh
+    - location: deploy.sh
       timeout: 60
       runas: ec2-user

@@ -11,6 +11,7 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
+
 script: "./gradlew clean build"
 
 before_deploy:
@@ -37,7 +38,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: springboot-cannedcoffee-deploy
-    key: springboot-cannedcoffee.zip
+    key: toy-springboot.zip
     bundle_type: zip
     application: springboot-cannedcoffee-codedeploy
     deployment_group: springboot-cannedcoffee-group
