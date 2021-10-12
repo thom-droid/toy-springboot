@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 
 group 'org.cannedcoffee.firsttoy'
-version '1.0.2-SNAPSHOT'
+version '1.0.3-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
