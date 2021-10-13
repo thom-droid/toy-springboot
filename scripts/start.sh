@@ -11,7 +11,7 @@ echo "> cp $REPOSITORY/zip/*.jar $REPOSITORY/"
 cp $REPOSITORY/zip/*.jar $REPOSITORY
 
 echo "> new application deployment"
-JAR_NAME = $(ls -tr $REPOSITORY/*.jar | tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
 echo "> JAR Name : $JAR_NAME"
 
@@ -21,7 +21,7 @@ chmod +x $JAR_NAME
 
 echo "> $JAR_NAME is being launched"
 
-IDLE_PROFILE =$(find_idle_profile)
+IDLE_PROFILE=$(find_idle_profile)
 
 echo "> $JAR_NAME is now running with profile = $IDLE_PROFILE"
 
